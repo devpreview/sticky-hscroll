@@ -1,8 +1,13 @@
 {
   "name": "sticky-hscroll",
   "description": "Sticky horizontal scroll jQuery plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
+  "author": {
+    "name": "Alexey Savchuk",
+    "email": "sabo@devpreview.ru",
+    "url": "http://devpreview.ru"
+  },
   "homepage": "https://github.com/devpreview/sticky-hscroll",
   "bugs": {
     "url": "https://github.com/devpreview/sticky-hscroll/issues"
@@ -12,7 +17,9 @@
     "url": "https://github.com/devpreview/sticky-hscroll.git"
   },
   "main": "src/sticky-hscroll.js",
-  "keywords": [ "jquery-plugin" ],
+  "keywords": [
+    "jquery-plugin"
+  ],
   "dependencies": {
     "jquery": "*"
   }
