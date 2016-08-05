@@ -1,5 +1,4 @@
 (function ($) {
-
     function top(e) {
         return e.offset().top;
     }
@@ -19,10 +18,14 @@
         }
     }
 
-    $.fn.stickyHScroll = function () {
-        this.find('.table-responsive').each(function () {
+    function init(container) {
+        container.find('.sticky-hscroll').each(function () {
             var element = $(this);
-            var scrollbar = $('<div class="table-responsive-hscroll"><div></div></div>');
+            if (element.data('has-sticky-hscroll') === true) {
+                return;
+            }
+            element.data('has-sticky-hscroll', true);
+            var scrollbar = $('<div class="sticky-hscroll-scrollbar"><div></div></div>');
             var scrollLeft = 0;
             scrollbar.appendTo($(document.body));
             scrollbar.hide();
@@ -46,6 +49,17 @@
             $(window).resize(function () {
                 onscroll(element, scrollbar, scrollLeft);
             });
+        });
+    }
+
+    $.fn.stickyHScroll = function () {
+        var container = this;
+        init(container);
+        $(window).scroll(function () {
+            init(container);
+        });
+        $(window).resize(function () {
+            init(container);
         });
         return this;
     };
