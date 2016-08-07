@@ -1,4 +1,6 @@
 (function ($) {
+    var icounter = 0;
+
     function top(e) {
         return e.offset().top;
     }
@@ -24,6 +26,8 @@
             if (element.data('has-sticky-hscroll') === true) {
                 return;
             }
+            var id = icounter++;
+
             element.data('has-sticky-hscroll', true);
             var scrollbar = $('<div class="sticky-hscroll-scrollbar"><div></div></div>');
             var scrollLeft = 0;
@@ -36,18 +40,27 @@
                 bottom: 0
             });
             scrollbar.find('div').css('height', '0.1px');
-            scrollbar.scroll(function () {
+            onscroll(element, scrollbar, scrollLeft);
+
+            scrollbar.bind('scroll.sticky-hscroll-' + id, function () {
                 element.scrollLeft(scrollbar.scrollLeft());
             });
-            element.scroll(function () {
+            element.bind('scroll.sticky-hscroll-' + id, function () {
                 scrollLeft = element.scrollLeft();
             });
-            onscroll(element, scrollbar, scrollLeft);
-            $(document).scroll(function () {
+            $(document).bind('scroll.sticky-hscroll-' + id, function () {
                 onscroll(element, scrollbar, scrollLeft);
             });
-            $(window).resize(function () {
+            $(window).bind('resize.sticky-hscroll-' + id, function () {
                 onscroll(element, scrollbar, scrollLeft);
+            });
+
+            element.bind('DOMNodeRemoved, DOMNodeRemovedFromDocument', function () {
+                $(document).unbind('.sticky-hscroll-' + id);
+                $(window).unbind('.sticky-hscroll-' + id);
+                scrollbar.unbind('.sticky-hscroll-' + id);
+                element.unbind('.sticky-hscroll-' + id);
+                scrollbar.remove();
             });
         });
     }
