@@ -43,7 +43,7 @@
                 scrollLeft = element.scrollLeft();
             });
             onscroll(element, scrollbar, scrollLeft);
-            $(window).scroll(function () {
+            $(document).scroll(function () {
                 onscroll(element, scrollbar, scrollLeft);
             });
             $(window).resize(function () {
@@ -55,7 +55,7 @@
     $.fn.stickyHScroll = function () {
         var container = this;
         init(container);
-        $(window).scroll(function () {
+        $(document).scroll(function () {
             init(container);
         });
         $(window).resize(function () {
