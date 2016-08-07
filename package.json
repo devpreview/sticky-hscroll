@@ -1,7 +1,7 @@
 {
   "name": "sticky-hscroll",
   "description": "Sticky horizontal scroll jQuery plugin",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "license": "MIT",
   "author": {
     "name": "Alexey Savchuk",
