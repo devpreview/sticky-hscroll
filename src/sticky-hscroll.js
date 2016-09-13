@@ -39,7 +39,7 @@
                 width: '100%',
                 bottom: 0
             });
-            scrollbar.find('div').css('height', '0.1px');
+            scrollbar.find('div').css('height', '1px');
             onscroll(element, scrollbar, scrollLeft);
 
             scrollbar.bind('scroll.sticky-hscroll-' + id, function () {
